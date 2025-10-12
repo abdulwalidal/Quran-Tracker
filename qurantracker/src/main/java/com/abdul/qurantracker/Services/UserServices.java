@@ -24,5 +24,12 @@ public class UserServices {
         return userRepository.findAll();
     }
 
+    public void deleteUser(ObjectId id) {
+        userRepository.deleteById(id);
+    }
+
+    public Optional<User> findbyID(ObjectId id) {
+        return userRepository.findById(id);
+    }
 
 }

@@ -15,6 +15,11 @@ public class User {
     private String userName;
     private String password;
 
+    @DBRef
+    // A list that holds all verseEntries written by this user
+    private List<VerseEntry> verseEntry = new ArrayList<>();
+
+
 
 
 }
