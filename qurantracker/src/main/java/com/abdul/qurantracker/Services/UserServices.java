@@ -32,4 +32,17 @@ public class UserServices {
         return userRepository.findById(id);
     }
 
-}
+    public User updateUser(ObjectId id, User newEntry) {
+        User old = userRepository.findByID(id);
+        if(old!=null) {
+            old.setUserName(newEntry.getUserName() != null && !newEntry.getUserName().equals("") ? newEntry.getUserName() : old.getUserName());
+            old.setPassword(newEntry.getPassword() != null && !newEntry.getPassword().equals("") ? newEntry.getPassword() : old.getPassword());
+        } createUser(old);
+        return old;
+
+        }
+    }
+
+
+    
+
