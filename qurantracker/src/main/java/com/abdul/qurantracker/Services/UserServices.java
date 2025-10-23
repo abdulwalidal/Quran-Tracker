@@ -1,26 +1,25 @@
 package com.abdul.qurantracker.Services;
 
-
 import com.abdul.qurantracker.Entity.User;
-import com.abdul.qurantracker.Entity.VerseEntry;
 import com.abdul.qurantracker.Repository.UserRepository;
-import com.abdul.qurantracker.Repository.VerseEntryRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UserServices {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public void createUser(User user) {
         userRepository.save(user);
     }
 
-    public List<User> getAll () {
+    public List<User> getAll() {
         return userRepository.findAll();
     }
 
@@ -28,21 +27,21 @@ public class UserServices {
         userRepository.deleteById(id);
     }
 
-    public Optional<User> findbyID(ObjectId id) {
-        return userRepository.findById(id);
+    public User getUserByObjectId(ObjectId id) {
+        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found with id: " + id));
     }
 
     public User updateUser(ObjectId id, User newEntry) {
-        User old = userRepository.findByID(id);
-        if(old!=null) {
-            old.setUserName(newEntry.getUserName() != null && !newEntry.getUserName().equals("") ? newEntry.getUserName() : old.getUserName());
-            old.setPassword(newEntry.getPassword() != null && !newEntry.getPassword().equals("") ? newEntry.getPassword() : old.getPassword());
-        } createUser(old);
-        return old;
+        User old = getUserByObjectId(id);
 
+        if (newEntry.getUserName() != null && !newEntry.getUserName().isEmpty()) {
+            old.setUserName(newEntry.getUserName());
         }
+        if (newEntry.getPassword() != null && !newEntry.getPassword().isEmpty()) {
+            old.setPassword(newEntry.getPassword());
+        }
+
+        userRepository.save(old);
+        return old;
     }
-
-
-    
-
+}

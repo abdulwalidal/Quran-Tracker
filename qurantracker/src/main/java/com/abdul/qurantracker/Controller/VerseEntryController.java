@@ -35,10 +35,7 @@ public class VerseEntryController {
     }
 
 
-//
-//    public List<VerseEntry> updateEntryby() {
-//
-//    }
+
 
 }
 
