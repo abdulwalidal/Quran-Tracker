@@ -4,7 +4,6 @@ import com.abdul.qurantracker.Entity.User;
 import com.abdul.qurantracker.Repository.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +32,8 @@ public class UserServices {
     }
 
     public User getUserbyUsername(String userName) {
-        return userRepository.findUserByUserName(userName);
+        Optional<User> opt = userRepository.findUserByUserName(userName);
+        return opt.orElse(null);
     }
 
 
@@ -54,4 +54,3 @@ public class UserServices {
 //
 //    }
 }
-

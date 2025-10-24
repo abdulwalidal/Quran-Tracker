@@ -2,14 +2,12 @@ package com.abdul.qurantracker.Controller;
 
 
 import com.abdul.qurantracker.Entity.VerseEntry;
-import com.abdul.qurantracker.Services.UserServices;
 import com.abdul.qurantracker.Services.VerseEntryServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,13 +25,11 @@ public class VerseEntryController {
         }
         }
 
-
     @GetMapping
     public List<VerseEntry> getAll() {
        return verseEntryServices.getALl();
 
     }
-
     @DeleteMapping
     public Boolean deleteEntry() {
         verseEntryServices.deleteEntry();
@@ -41,7 +37,4 @@ public class VerseEntryController {
     }
 
 
-
-
 }
-
