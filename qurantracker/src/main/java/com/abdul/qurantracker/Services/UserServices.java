@@ -40,6 +40,7 @@ public class UserServices {
         if (newEntry.getPassword() != null && !newEntry.getPassword().isEmpty()) {
             old.setPassword(newEntry.getPassword());
         }
+<<<<<<< HEAD
         if (newEntry.getPassword() != null && !newEntry.getPassword().isEmpty()) {
             old.setPassword(newEntry.getPassword());
         }
@@ -49,3 +50,10 @@ public class UserServices {
 }
 
 
+=======
+
+        userRepository.save(old);
+        return old;
+    }
+}
+>>>>>>> origin/main
